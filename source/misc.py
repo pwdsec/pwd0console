@@ -40,7 +40,7 @@ class Miscellaneous():
             users_grabbed = []
 
             print("Getting all users names")
-            user_requests = requests.get("", verify=False, cookies=dict(
+            user_requests = requests.get("https://lynx.rip/dashboard/home/userlist/", verify=False, cookies=dict(
             PHPSESSID=PHPSESSID, avatar=COOKIES["avatar"], username=COOKIES["username"], did=COOKIES["did"]))
 
             users = BeautifulSoup(user_requests.text, "html.parser")
@@ -56,7 +56,7 @@ class Miscellaneous():
             code_list = []
 
             cloudcodes = requests.get("https://lynx.rip/dashboard/home/cloudscripts/storage/", verify=False)
-            cloud_code = beautifulSoup(cloudcodes.text, "html.parser")
+            cloud_code = BeautifulSoup(cloudcodes.text, "html.parser")
             if cloudcodes.status_code == 200:
                 for i in cloud_code.find_all("li"):
                     if "src" in i.text:
@@ -76,4 +76,20 @@ class Miscellaneous():
             cookies_file.close()
         except Exception:
             print("There was an error while saving your cookies")
-            
+    
+    def GetDiscord(PHPSESSID):
+        try:
+            print("getting the discord")
+            discordRequest = requests.get("https://lynx.rip/dashboard/home/", verify=False, cookies=dict(PHPSESSID=PHPSESSID))
+            discord = BeautifulSoup(discordRequest.text, "html.parser")
+            if discordRequest.status_code == 200:
+                for discord_link in discord.find_all("a", href=True):
+                    if "discord" in discord_link:
+                        print("Discord: ", discord_link["href"])
+                    else:
+                        pass
+            else:
+                print("There was an error while getting the discord")
+            pass
+        except Exception:
+            print("There was an error while getting the discord")
