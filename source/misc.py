@@ -68,3 +68,12 @@ class Miscellaneous():
             pass
         except Exception:
             print("There was an error while getting all cloud scripts code")
+
+    def SaveCookies(COOKIES):
+        try:
+            cookies_file = open("saved_cookies.txt" , "w")
+            cookies_file.write(str(COOKIES))
+            cookies_file.close()
+        except Exception:
+            print("There was an error while saving your cookies")
+            
