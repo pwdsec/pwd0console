@@ -93,3 +93,20 @@ class Miscellaneous():
             pass
         except Exception:
             print("There was an error while getting the discord")
+    
+    def GetUpdateVersions(PHPSESSID):
+        try:
+            update_versions = requests.get("https://lynx.rip/dashboard/home/", verify=False, cookies=dict(PHPSESSID=PHPSESSID))
+            versions = BeautifulSoup(update_versions.text, "html.parser")
+            if update_versions.status_code == 200:
+                for i in versions.find_all("a", {"class": "text-muted font-weight-bold font-size-lg mb-1"}):
+                    if "Version" in i.text:
+                        print(i.text)
+                    else:
+                        pass
+            else:
+                print("There was an error while getting the versions.")
+            pass
+        except Exception:
+                        
+            print("There was an error an error while getting the versions.")
