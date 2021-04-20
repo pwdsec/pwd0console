@@ -53,6 +53,18 @@ class Miscellaneous():
 
     def GetAllCloudScriptsCode():
         try:
+            code_list = []
+
+            cloudcodes = requests.get("https://lynx.rip/dashboard/home/cloudscripts/storage/", verify=False)
+            cloud_code = beautifulSoup(cloudcodes.text, "html.parser")
+            if cloudcodes.status_code == 200:
+                for i in cloud_code.find_all("li"):
+                    if "src" in i.text:
+                        code_list.append(i.text)
+                    else:
+                        pass
+            else:
+                print("There was an error while getting cloud codes, code: " + str(cloudcodes.status_code))
             pass
         except Exception:
             print("There was an error while getting all cloud scripts code")
