@@ -1,5 +1,5 @@
 import auth
-
+import account
 
 php = input("[PHPSESSID]: ")
 cookies = auth.LoginHandler.Login(php)
