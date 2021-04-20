@@ -57,7 +57,7 @@ class Account():
 
     # this will upload your script to cloudScript
     # it might not work properly, i did not test it
-    def upload_script(PHPSESSID, COOKIES):
+    def UploadScript(PHPSESSID, COOKIES):
         try:
 
             headers = {
