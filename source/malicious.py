@@ -7,6 +7,7 @@ import requests
 import warnings
 import threading
 import random
+import wget
 from bs4 import BeautifulSoup
 
 class Malicious():
