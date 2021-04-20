@@ -34,3 +34,25 @@ class Miscellaneous():
             print("Downloaded. it should be in the same directory.")
         except Exception:
             print("There was an error downloading lynx.dll")
+
+    def GetAllUsersnames(PHPSESSID, COOKIES):
+        try:
+            users_grabbed = []
+
+            print("Getting all users names")
+            user_requests = requests.get("", verify=False, cookies=dict(
+            PHPSESSID=PHPSESSID, avatar=COOKIES["avatar"], username=COOKIES["username"], did=COOKIES["did"]))
+
+            users = BeautifulSoup(user_requests.text, "html.parser")
+
+            for i in users.find_all("div", {"class": "font-weight-bold font-size-h5 text-light"}):
+                users_grabbed.append(i.text)
+            print(users_grabbed)
+        except Exception:
+            print("There was an error while grabbing users")
+
+    def GetAllCloudScriptsCode():
+        try:
+            pass
+        except Exception:
+            print("There was an error while getting all cloud scripts code")
