@@ -108,5 +108,12 @@ class Miscellaneous():
                 print("There was an error while getting the versions.")
             pass
         except Exception:
-                        
             print("There was an error an error while getting the versions.")
+
+    
+    def GetPlannedFunctons():
+        try:
+            planned_requests = requests.get("https://lynx.rip/dashboard/home/", verify=False, cookies=dict(PHPSESSID=PHPSESSID))
+            pass
+        except Exception:
+            print("There was an error while getting the planned functions.")
