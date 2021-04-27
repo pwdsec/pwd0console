@@ -1,2 +1,2 @@
-# pwd0console
- pwd0kernel Lynx console
+# pwd0console - discontinued
+ pwd0kernel Lynx console - discontinued
