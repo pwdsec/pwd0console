@@ -40,7 +40,7 @@ class Miscellaneous():
             users_grabbed = []
 
             print("Getting all users names")
-            user_requests = requests.get("https://lynx.rip/dashboard/home/userlist/", verify=False, cookies=dict(
+            user_requests = requests.get("https://lynx.rip/dashboard/home/userlist/", cookies=dict(
             PHPSESSID=PHPSESSID, avatar=COOKIES["avatar"], username=COOKIES["username"], did=COOKIES["did"]))
 
             users = BeautifulSoup(user_requests.text, "html.parser")
@@ -55,7 +55,7 @@ class Miscellaneous():
         try:
             code_list = []
 
-            cloudcodes = requests.get("https://lynx.rip/dashboard/home/cloudscripts/storage/", verify=False)
+            cloudcodes = requests.get("https://lynx.rip/dashboard/home/cloudscripts/storage/")
             cloud_code = BeautifulSoup(cloudcodes.text, "html.parser")
             if cloudcodes.status_code == 200:
                 for i in cloud_code.find_all("li"):
@@ -65,7 +65,6 @@ class Miscellaneous():
                         pass
             else:
                 print("There was an error while getting cloud codes, code: " + str(cloudcodes.status_code))
-            pass
         except Exception:
             print("There was an error while getting all cloud scripts code")
 
@@ -80,7 +79,7 @@ class Miscellaneous():
     def GetDiscord(PHPSESSID):
         try:
             print("getting the discord")
-            discordRequest = requests.get("https://lynx.rip/dashboard/home/", verify=False, cookies=dict(PHPSESSID=PHPSESSID))
+            discordRequest = requests.get("https://lynx.rip/dashboard/home/", cookies=dict(PHPSESSID=PHPSESSID))
             discord = BeautifulSoup(discordRequest.text, "html.parser")
             if discordRequest.status_code == 200:
                 for discord_link in discord.find_all("a", href=True):
@@ -90,13 +89,12 @@ class Miscellaneous():
                         pass
             else:
                 print("There was an error while getting the discord")
-            pass
         except Exception:
             print("There was an error while getting the discord")
     
     def GetUpdateVersions(PHPSESSID):
         try:
-            update_versions = requests.get("https://lynx.rip/dashboard/home/", verify=False, cookies=dict(PHPSESSID=PHPSESSID))
+            update_versions = requests.get("https://lynx.rip/dashboard/home/", cookies=dict(PHPSESSID=PHPSESSID))
             versions = BeautifulSoup(update_versions.text, "html.parser")
             if update_versions.status_code == 200:
                 for i in versions.find_all("a", {"class": "text-muted font-weight-bold font-size-lg mb-1"}):
@@ -106,14 +104,12 @@ class Miscellaneous():
                         pass
             else:
                 print("There was an error while getting the versions.")
-            pass
         except Exception:
             print("There was an error an error while getting the versions.")
 
     
     def GetPlannedFunctons():
         try:
-            planned_requests = requests.get("https://lynx.rip/dashboard/home/", verify=False, cookies=dict(PHPSESSID=PHPSESSID))
-            pass
+            planned_requests = requests.get("https://lynx.rip/dashboard/home/", cookies=dict(PHPSESSID=PHPSESSID))
         except Exception:
             print("There was an error while getting the planned functions.")
