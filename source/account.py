@@ -44,7 +44,7 @@ class Account():
     # since the one on the website is currently broken
     def ChangeBio(PHPSESSID, COOKIES, BIO):
         try:
-            bio = requests.post("https://lynx.rip/dashboard/home/profile/", data={'bio': BIO}, verify=False, cookies=dict(
+            bio = requests.post("https://lynx.rip/dashboard/home/profile/", data={'bio': BIO}, cookies=dict(
             PHPSESSID=PHPSESSID, avatar=COOKIES["avatar"], username=COOKIES["username"], did=COOKIES["did"]))
             if bio.status_code == 200:
                 print("Bio as been updated to:", BIO)
